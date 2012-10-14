@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CalculadoraDeCadenas\CalculadoraCadenas.cs" />
+    <Compile Include="CalculadoraDeCadenas\NumeroNegativoException.cs" />
     <Compile Include="CalculadoraDeCadenas\NUnitCalcuradoraCadenasTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
