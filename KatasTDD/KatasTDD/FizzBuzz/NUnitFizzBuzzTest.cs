@@ -30,6 +30,36 @@ namespace KatasTDD.FizzBuzz
         }
         #endregion
 
+
+        [Test]
+        [TestCase(0,Result = true)]
+        [TestCase(-2, Result = false)]
+        [TestCase(3, Result = true)]
+        [TestCase(15, Result = true)]
+        [TestCase(5, Result = false)]
+        public bool TestNumeroFizz(int numero)
+        {
+            var fizzBuzz = new MyFizzBuzz();
+
+            return  MyFizzBuzz.checkFizzNumber(numero);
+           
+        }
+
+        [Test]
+        [TestCase(0, Result = true)]
+        [TestCase(-2, Result = false)]
+        [TestCase(5, Result = true)]
+        [TestCase(15, Result = true)]
+        [TestCase(3, Result = false)]
+        public bool TestNumeroBuzz(int numero)
+        {
+            var fizzBuzz = new MyFizzBuzz();
+
+            return MyFizzBuzz.checkBuzzNumber(numero);
+
+        }
+
+
         [Test]
         public void getFizzBuzzHasta10()
         {
