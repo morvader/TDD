@@ -48,6 +48,8 @@
     <Compile Include="CalculadoraDeCadenas\NUnitCalcuradoraCadenasTest.cs" />
     <Compile Include="FizzBuzz\MyFizzBuzz.cs" />
     <Compile Include="FizzBuzz\NUnitFizzBuzzTest.cs" />
+    <Compile Include="ListaUltimoUsado\NUnitListaUltimoUsadoTest.cs" />
+    <Compile Include="ListaUltimoUsado\TListaUltimoUsado.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -56,6 +58,7 @@
   <ItemGroup>
     <Content Include="CalculadoraDeCadenas\CalculadoraDeCaracteres.txt" />
     <Content Include="FizzBuzz\FizzBuzz.txt" />
+    <Content Include="ListaUltimoUsado\ListaUltimoUsado.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
