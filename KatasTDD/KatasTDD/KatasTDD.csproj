@@ -50,6 +50,8 @@
     <Compile Include="FizzBuzz\NUnitFizzBuzzTest.cs" />
     <Compile Include="ListaUltimoUsado\NUnitListaUltimoUsadoTest.cs" />
     <Compile Include="ListaUltimoUsado\TListaUltimoUsado.cs" />
+    <Compile Include="ManosPoker\CompruebaMano.cs" />
+    <Compile Include="ManosPoker\NUnitManosPokerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -59,6 +61,7 @@
     <Content Include="CalculadoraDeCadenas\CalculadoraDeCaracteres.txt" />
     <Content Include="FizzBuzz\FizzBuzz.txt" />
     <Content Include="ListaUltimoUsado\ListaUltimoUsado.txt" />
+    <Content Include="ManosPoker\ManosPoker.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
