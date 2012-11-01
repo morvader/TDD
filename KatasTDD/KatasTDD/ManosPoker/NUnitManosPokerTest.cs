@@ -67,6 +67,18 @@ namespace KatasTDD.ManosPoker
             Assert.That(esPoker, Is.EqualTo(expected));
 
         }
+        [Test]
+        [TestCase(new string[] { "2T", "4C", "9P", "5D", "10T" }, null)]
+        [TestCase(new string[] { "2T", "3C", "4P", "5D", "6T" }, null)]
+        [TestCase(new string[] { "2T", "4T", "5T", "6T", "7T" }, null)]
+        [TestCase(new string[] { "JC", "JT", "JD", "JP", "AT" }, new string[] {"JC", "JT", "JD", "JP"})]
+        [TestCase(new string[] { "2P", "3T", "3D", "3C", "3P" }, new string[] { "3T", "3D", "3C", "3P" })]
+        public void getCartasPoker(string[] mano, string[] expected)
+        {
+            CompruebaMano check = new CompruebaMano();
+            string[] actual = check.getCartasPoker( mano);
+            CollectionAssert.AreEqual(actual, expected);
+        }
 
 
         [Test]
@@ -97,6 +109,21 @@ namespace KatasTDD.ManosPoker
 
             Assert.That(manoMasAlta, Is.EqualTo(expected));
 
+        }
+
+        [Test]
+        [TestCase(new string[] { "2T", "4C", "9P", "5D", "10T" }, null)]
+        [TestCase(new string[] { "2T", "3C", "4P", "5D", "6T" }, null)]
+        [TestCase(new string[] { "2T", "4T", "5T", "6T", "7T" }, null)]
+        [TestCase(new string[] { "JC", "JT", "JD", "10P", "AT" }, new string[] { "JC", "JT", "JD"})]
+        [TestCase(new string[] { "2P", "3T", "7D", "3C", "3P" }, new string[] { "3T","3C", "3P" })]
+        [TestCase(new string[] { "2P", "AT", "AD", "3C", "AP" }, new string[] { "AT", "AD", "AP" })]
+        public void getCartasTrio( string[] mano,string[] expected)
+        {
+            CompruebaMano check = new CompruebaMano();
+            string[] actual = check.getCartasTrio(mano);
+            CollectionAssert.AreEqual(actual, expected);
+            
         }
     }
 }

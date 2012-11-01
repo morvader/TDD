@@ -9,9 +9,7 @@ namespace KatasTDD.ManosPoker
 
     public class CompruebaMano
     {
-        public enum ValorFiguras { J = 11, Q = 12, K = 13, A = 14 };
-
-        public enum PaloCarta { T, D, C, P };
+        
 
 
         internal bool esEscaleraColor(string[] mano)
@@ -54,12 +52,13 @@ namespace KatasTDD.ManosPoker
         internal string getCartaMasAlta(string[] mano)
         {
             string cartaMasAlta = mano[0];
-            int valorNumericoCartaMasAlta = getValorNumericoCarta(cartaMasAlta);
+            int valorNumericoCartaMasAlta = ManosPokerUtils.getValorNumericoCarta(cartaMasAlta);
             int valorNumericoCarta;
           
+
             foreach (string carta in mano)
-            {    
-                valorNumericoCarta = getValorNumericoCarta(carta);
+            {
+                valorNumericoCarta = ManosPokerUtils.getValorNumericoCarta(carta);
                 if (valorNumericoCarta > valorNumericoCartaMasAlta)
                 {
                     cartaMasAlta = carta;
@@ -69,52 +68,12 @@ namespace KatasTDD.ManosPoker
             return cartaMasAlta;
         }
 
-        private int getValorNumericoCarta(string carta)
-        {
-            int valorNumerico;
-            char cadenaValor;
-            //Si la carta tiene caracter es un 10X
-            //En caso contrario el valor es el primere caracter
-            if (carta.Length == 3)
-                valorNumerico = 10;
-            else
-            {
-                //Puede ser un numero o una figura
-                cadenaValor = carta[0];
-                //Si es una figura convertimos
-                if (char.IsLetter(cadenaValor))
-                    valorNumerico = (int)Enum.Parse(typeof(ValorFiguras), cadenaValor.ToString());
-                else
-                    valorNumerico = int.Parse(cadenaValor.ToString());
-            }
-
-            return valorNumerico;
-        }
-
-        private char getPaloCarta(string carta)
-        {
-            return carta.Substring(carta.Length - 1).First();
-        }
-
-        private Tuple<int, char>[] manoStringToTupla(string[] mano)
-        {
-            List<Tuple<int, char>> tuplaMano = new List<Tuple<int, char>>();
-            char palo;
-            int valorNumerico;
-            foreach (string carta in mano)
-            {
-                palo = getPaloCarta(carta);
-                valorNumerico = getValorNumericoCarta(carta);
-                tuplaMano.Add(new Tuple<int, char>(valorNumerico, palo));
-            }
-
-            return tuplaMano.ToArray();
-        }
+      
 
         internal bool esPoker(string[] mano)
         {
             //Comprobar 4 cartas con el mismo valor
-            var manoTupla = manoStringToTupla(mano);
+            var manoTupla = ManosPokerUtils.manoStringToTupla(mano);
 
             bool poker = false;
 
@@ -138,7 +97,7 @@ namespace KatasTDD.ManosPoker
         internal bool esColor(string[] mano)
         {
             //Comprobar que todas las cartas son del mismo palo
-            var manoTupla = manoStringToTupla(mano);
+            var manoTupla = ManosPokerUtils.manoStringToTupla(mano);
 
             char palo = manoTupla.First().Item2;
 
@@ -149,7 +108,7 @@ namespace KatasTDD.ManosPoker
 
         internal bool esEscalera(string[] mano)
         {
-            var manoTupla = manoStringToTupla(mano);
+            var manoTupla = ManosPokerUtils.manoStringToTupla(mano);
             //Ordenar por valor
             var manoOrdenada = manoTupla.OrderBy(c => c.Item1);
 
@@ -164,5 +123,70 @@ namespace KatasTDD.ManosPoker
             return ordenada;
 
         }
+
+        internal string[] getCartasPoker(string[] mano)
+        {
+            var cartasPoker = new List<string>();
+            var manoTupla = ManosPokerUtils.manoStringToTupla(mano);
+
+            //Primera carta
+            int valorCarta = manoTupla.First().Item1;
+
+            var cartasIguales = manoTupla.Where(c => c.Item1 == valorCarta);
+
+            if (cartasIguales.Count() == 4)
+               return ManosPokerUtils.manoTuplaToString(cartasIguales.ToArray());
+            
+            //Probamos con la segunda carta
+            valorCarta = manoTupla.ElementAt(1).Item1;
+
+            cartasIguales = manoTupla.Where(c => c.Item1 == valorCarta);
+
+            if (cartasIguales.Count() == 4)
+                return ManosPokerUtils.manoTuplaToString(cartasIguales.ToArray());
+
+
+            return null;
+        }
+
+        internal string[] getCartasTrio(string[] mano)
+        {
+            var cartasTrio = new List<string>();
+
+            //Ordenar las cartas de la mano
+            var manoTupla = ManosPokerUtils.manoStringToTupla(mano).OrderBy(c=> c.Item1);
+
+            //Buscamos los trios empezando por la primera carta hasta la tercera
+
+            //Primera carta
+            int valorCarta = manoTupla.First().Item1;
+
+            var cartasIguales = manoTupla.Where(c => c.Item1 == valorCarta);
+
+            if (cartasIguales.Count() == 3)
+                return ManosPokerUtils.manoTuplaToString(cartasIguales.ToArray());
+
+            //Pasamos a la segunda carta
+            valorCarta = manoTupla.ElementAt(1).Item1;
+
+            cartasIguales = manoTupla.Where(c => c.Item1 == valorCarta);
+
+            if (cartasIguales.Count() == 3)
+                return ManosPokerUtils.manoTuplaToString(cartasIguales.ToArray());
+
+            //TODO : Refactorizar a getCartasIguales(posicion, NumeroIguales)
+
+            //Pasamos a la tercera carta
+            valorCarta = manoTupla.ElementAt(2).Item1;
+
+            cartasIguales = manoTupla.Where(c => c.Item1 == valorCarta);
+
+            if (cartasIguales.Count() == 3)
+                return ManosPokerUtils.manoTuplaToString(cartasIguales.ToArray());
+
+            return null;
+        }
+
+      
     }
 }

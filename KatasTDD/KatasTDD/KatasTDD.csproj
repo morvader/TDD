@@ -51,7 +51,9 @@
     <Compile Include="ListaUltimoUsado\NUnitListaUltimoUsadoTest.cs" />
     <Compile Include="ListaUltimoUsado\TListaUltimoUsado.cs" />
     <Compile Include="ManosPoker\CompruebaMano.cs" />
+    <Compile Include="ManosPoker\ManosPokerUtils.cs" />
     <Compile Include="ManosPoker\NUnitManosPokerTest.cs" />
+    <Compile Include="ManosPoker\NUnitManosPokerUtilsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
