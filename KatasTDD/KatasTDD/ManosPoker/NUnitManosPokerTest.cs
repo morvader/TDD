@@ -99,15 +99,15 @@ namespace KatasTDD.ManosPoker
         [Test]
         [TestCase(false, new string[] { "2T", "4C", "9P", "5D", "10T" })]
         [TestCase(false, new string[] { "2T", "3C", "4P", "5D", "6T" })]
-        [TestCase(true, new string[] { "2T", "4T", "5T", "6T", "7T" })]
+        [TestCase(false, new string[] { "2T", "4T", "5T", "6T", "7T" })]
         [TestCase(false, new string[] { "JC", "JT", "JD", "JP", "AT" })]
         [TestCase(true, new string[] { "2P", "2D", "2C", "10P", "10T" })]
         [TestCase(true, new string[] { "5C", "5T", "QC", "QT", "QP" })]
         public void esFull(bool expected, string[] mano)
         {
             CompruebaMano check = new CompruebaMano();
-            bool esColor = check.esFull(mano);
-            Assert.That(esColor, Is.EqualTo(expected));
+            bool esFull = check.esFull(mano);
+            Assert.That(esFull, Is.EqualTo(expected));
 
         }
 
@@ -172,10 +172,13 @@ namespace KatasTDD.ManosPoker
 
         [Test]
         [TestCase(new string[] { "2T", "4C", "9P", "5D", "10T" }, new string[] { "2C", "4T", "9D", "5P", "10C" },"Empate")]
+        [TestCase(new string[] { "2T", "2C", "2P", "5D", "10T" }, new string[] { "4C", "4T", "9D", "4P", "10C" }, "Ganador jugador2 - Trio")]
+        [TestCase(new string[] { "QT", "2C", "8P", "QD", "10T" }, new string[] { "QC", "4T", "QP", "9P", "10C" }, "Ganador jugador2 - CartaMasAlta : 9P")]
         [TestCase(new string[] { "2T", "4C", "9P", "5D", "10T" }, new string[] { "2C", "4T", "QD", "5P", "10C" }, "Ganador jugador2 - CartaMasAlta : QD")]
         [TestCase(new string[] { "2T", "3C", "4P", "5D", "6T" }, new string[] { "2T", "3C", "10P", "5D", "10T" }, "Ganador jugador1 - Escalera")]
         [TestCase(new string[] { "2T", "2C", "5T", "6T", "7T" }, new string[] { "2T", "3C", "5P", "5D", "5T" }, "Ganador jugador2 - Trio")]
         [TestCase(new string[] { "AC", "JT", "JD", "10P", "AT" }, new string[] { "QT", "QD", "QC", "KT", "KD" }, "Ganador jugador2 - Full")]
+        [TestCase(new string[] { "JC", "JT", "AD", "AP", "AT" }, new string[] { "QT", "QD", "QC", "KT", "KD" }, "Ganador jugador1 - Full")]
         [TestCase(new string[] { "7P", "3T", "7D", "3C", "6P" }, new string[] { "2T", "2C", "8P", "9D", "AC" }, "Ganador jugador1 - DoblePareja")]
         [TestCase(new string[] { "2P", "QT", "AD", "QC", "AP" }, new string[] { "QP", "QD", "AT", "AC", "5P" }, "Ganador jugador2 - CartaMasAlta : 5P")]
         [TestCase(new string[] { "2P", "QT", "AD", "JC", "AP" }, new string[] { "KP", "QD", "AT", "AC", "5P" }, "Ganador jugador2 - CartaMasAlta : KP")]

@@ -253,7 +253,6 @@ namespace KatasTDD.ManosPoker
                 return this.resuelveEmpate(manoJugador1, manoJugador2, valorManoJugador1);
             }
 
-            return "Empate";
         }
 
         private ValorMano getValorManoJugador(string[] mano)
