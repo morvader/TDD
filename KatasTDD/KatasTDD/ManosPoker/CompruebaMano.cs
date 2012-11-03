@@ -447,9 +447,9 @@ namespace KatasTDD.ManosPoker
             //En caso de que la pareja sea igual, comprobar el valor del resto de cartas
             else
             {
-                //Ordenamos el resto de cartas por su valor
-                var restoCartasJugador1 = ManosPokerUtils.manoStringToTupla(manoJugador1.Except(cartasParejaJugador1).ToArray()).OrderBy(c=> c.Item1);
-                var restoCartasJugador2 = ManosPokerUtils.manoStringToTupla (manoJugador2.Except(cartasParejaJugador2).ToArray()).OrderBy(c=> c.Item1);
+                //Ordenamos el resto de cartas por su valor (De mayor a menor)
+                var restoCartasJugador1 = ManosPokerUtils.manoStringToTupla(manoJugador1.Except(cartasParejaJugador1).ToArray()).OrderByDescending(c=> c.Item1);
+                var restoCartasJugador2 = ManosPokerUtils.manoStringToTupla(manoJugador2.Except(cartasParejaJugador2).ToArray()).OrderByDescending(c => c.Item1);
 
                 int valorCartaJugador1, valorCartaJugador2;
                 for (int i = 0; i < restoCartasJugador1.Count(); i++)
@@ -457,9 +457,9 @@ namespace KatasTDD.ManosPoker
                     valorCartaJugador1 = restoCartasJugador1.ElementAt(i).Item1;
                     valorCartaJugador2 = restoCartasJugador2.ElementAt(i).Item1;
                     if(valorCartaJugador1 > valorCartaJugador2)
-                        return "Ganador jugador1 - CartaMasAlta: " + ManosPokerUtils.getRepresentacionCarta(valorCartaJugador1) + restoCartasJugador1.ElementAt(i).Item2 ; 
+                        return "Ganador jugador1 - CartaMasAlta : " + ManosPokerUtils.getRepresentacionCarta(valorCartaJugador1) + restoCartasJugador1.ElementAt(i).Item2 ; 
                     if(valorCartaJugador2 > valorCartaJugador1)
-                        return "Ganador jugador2 - CartaMasAlta: " + ManosPokerUtils.getRepresentacionCarta(valorCartaJugador2) + restoCartasJugador2.ElementAt(i).Item2 ; 
+                        return "Ganador jugador2 - CartaMasAlta : " + ManosPokerUtils.getRepresentacionCarta(valorCartaJugador2) + restoCartasJugador2.ElementAt(i).Item2 ; 
                 }
 
                 return "Empate";
@@ -469,9 +469,9 @@ namespace KatasTDD.ManosPoker
         private string resuelveEmpateCartaMasAlta(string[] manoJugador1, string[] manoJugador2)
         {
 
-            //Ordenamos cartas por su valor
-            var cartasJugador1 = ManosPokerUtils.manoStringToTupla(manoJugador1.ToArray()).OrderBy(c => c.Item1);
-            var cartasJugador2 = ManosPokerUtils.manoStringToTupla(manoJugador2.ToArray()).OrderBy(c => c.Item1);
+            //Ordenamos cartas por su valor (de mayor a menor)
+            var cartasJugador1 = ManosPokerUtils.manoStringToTupla(manoJugador1.ToArray()).OrderByDescending(c => c.Item1);
+            var cartasJugador2 = ManosPokerUtils.manoStringToTupla(manoJugador2.ToArray()).OrderByDescending(c => c.Item1);
 
             int valorCartaJugador1, valorCartaJugador2;
             for (int i = 0; i < cartasJugador1.Count(); i++)
@@ -479,9 +479,9 @@ namespace KatasTDD.ManosPoker
                 valorCartaJugador1 = cartasJugador1.ElementAt(i).Item1;
                 valorCartaJugador2 = cartasJugador2.ElementAt(i).Item1;
                 if (valorCartaJugador1 > valorCartaJugador2)
-                    return "Ganador jugador1 - CartaMasAlta: " + ManosPokerUtils.getRepresentacionCarta(valorCartaJugador1) + cartasJugador1.ElementAt(i).Item2;
+                    return "Ganador jugador1 - CartaMasAlta : " + ManosPokerUtils.getRepresentacionCarta(valorCartaJugador1) + cartasJugador1.ElementAt(i).Item2;
                 if (valorCartaJugador2 > valorCartaJugador1)
-                    return "Ganador jugador2 - CartaMasAlta: " + ManosPokerUtils.getRepresentacionCarta(valorCartaJugador2) + cartasJugador2.ElementAt(i).Item2;
+                    return "Ganador jugador2 - CartaMasAlta : " + ManosPokerUtils.getRepresentacionCarta(valorCartaJugador2) + cartasJugador2.ElementAt(i).Item2;
             }
 
             return "Empate";

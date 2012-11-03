@@ -172,11 +172,13 @@ namespace KatasTDD.ManosPoker
 
         [Test]
         [TestCase(new string[] { "2T", "4C", "9P", "5D", "10T" }, new string[] { "2C", "4T", "9D", "5P", "10C" },"Empate")]
+        [TestCase(new string[] { "2T", "4C", "9P", "5D", "10T" }, new string[] { "2C", "4T", "QD", "5P", "10C" }, "Ganador jugador2 - CartaMasAlta : QD")]
         [TestCase(new string[] { "2T", "3C", "4P", "5D", "6T" }, new string[] { "2T", "3C", "10P", "5D", "10T" }, "Ganador jugador1 - Escalera")]
         [TestCase(new string[] { "2T", "2C", "5T", "6T", "7T" }, new string[] { "2T", "3C", "5P", "5D", "5T" }, "Ganador jugador2 - Trio")]
         [TestCase(new string[] { "AC", "JT", "JD", "10P", "AT" }, new string[] { "QT", "QD", "QC", "KT", "KD" }, "Ganador jugador2 - Full")]
         [TestCase(new string[] { "7P", "3T", "7D", "3C", "6P" }, new string[] { "2T", "2C", "8P", "9D", "AC" }, "Ganador jugador1 - DoblePareja")]
         [TestCase(new string[] { "2P", "QT", "AD", "QC", "AP" }, new string[] { "QP", "QD", "AT", "AC", "5P" }, "Ganador jugador2 - CartaMasAlta : 5P")]
+        [TestCase(new string[] { "2P", "QT", "AD", "JC", "AP" }, new string[] { "KP", "QD", "AT", "AC", "5P" }, "Ganador jugador2 - CartaMasAlta : KP")]
         public void compruebaGanador(string[] manoJugador1, string[] manoJugador2, string resultado)
         {
             CompruebaMano check = new CompruebaMano();
