@@ -81,14 +81,14 @@ namespace KatasTDD.ListaUltimoUsado
         [TestCase(-1)]
         [TestCase(5)]
         [TestCase(12)]
-        public string comprobarExcepcionFueraDeRango(int indice)
+        public void comprobarExcepcionFueraDeRango(int indice)
         {
             var lista = new TListaUltimoUsado();
             lista.Add("Primero");
             lista.Add("Segundo");
             lista.Add("Tercero");
 
-            return lista.elemento(indice);
+            lista.elemento(indice);
         }
 
         [Test]
